@@ -13,15 +13,15 @@ export default firebase
     messagingSenderId: "493034871634",
     appId: "1:493034871634:web:3546e8a2c0741b1779b88b",
     measurementId: "G-L78QVCSWW9",
-  })
-  .analytics();
+  });
 
 export const db = firebase.firestore();
 
-export function GetSimulateur(uid: string) {
+export function GetSimulateur(uid?: number) {
+ 
   return new Observable((sub) => {
     db.collection("publics_simulators")
-      .doc(uid)
+      .doc(uid?.toString())
       .onSnapshot((o) => sub.next(o.data()));
   });
 }

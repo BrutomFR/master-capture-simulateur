@@ -1,23 +1,41 @@
 import React, {
   FunctionComponent,
+  useContext,
   useEffect,
+  useState,
   // useContext,
 } from "react";
+import ISimulateur from "src/Core/Interfaces/ISimulateur";
+import { Context, IContext } from "src/Utils/context";
+import * as FirebaseHelper from "src/Utils/FirebaseHelper";
+import SimulateurComponent from "../Simulateur/SimulateurComponent";
 import "./.css";
-// import { Context, IContext } from "../Utils/context";
-import { IVerificationComponent } from "./props";
-const VerificationComponent: FunctionComponent<IVerificationComponent> = (props) => {
-  // const monContext: IContext = useContext(Context);
+import { IPropsParams, IVerificationComponent } from "./props";
 
+const VerificationComponent: FunctionComponent<IVerificationComponent> = (
+  props
+) => {
+  const monContext: IContext = useContext(Context);
+  const params: IPropsParams = props.match.params;
+  const [simulatorFound, setSimulatorFound] = useState<boolean>(false);
   useEffect(() => {
-    return () => {
-      //
-    };
+    FirebaseHelper.GetSimulateur(params.id).subscribe((simu: ISimulateur) => {
+      if (simu === undefined) setSimulatorFound(false);
+      else {
+        monContext.simulateur.set(simu);
+        setSimulatorFound(true);
+      }
+    });
+    return () => {};
   }, []);
 
   return (
     <div>
-      <div>Nouveau composant</div>
+      {simulatorFound ? (
+        <SimulateurComponent />
+      ) : (
+        <div>Le simulateur n'existe plus ou n'est pas en ligne.</div>
+      )}
     </div>
   );
 };

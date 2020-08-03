@@ -8,6 +8,9 @@ App {
 }
 body {
   font-family: "Rubik";
+  margin: 0px;
+  background-color: #eee;
+  color: black;
 }
 ::-webkit-scrollbar {
   width: 10px;
