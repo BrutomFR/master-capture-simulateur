@@ -5,7 +5,7 @@ import React, {
   useState,
   // useContext,
 } from "react";
-import ISimulateur from "src/Core/Interfaces/ISimulateur";
+import ISimulateur from 'src/Core/Interfaces/User/ISimulateur';
 import { Context, IContext } from "src/Utils/context";
 import * as FirebaseHelper from "src/Utils/FirebaseHelper";
 import SimulateurComponent from "../Simulateur/SimulateurComponent";

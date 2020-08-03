@@ -16,17 +16,21 @@ const HeaderSimulateurComponent: FunctionComponent<IHeaderSimulateurComponent> =
   }, []);
 
   return (
-    <div className="header">
-      <div style={{ marginBottom: "40px" }}>
-        <h1>
-          <b>ÉTAPES</b>
-        </h1>
-      </div>
-      <Steps current={0} progressDot>
-        {monContext.simulateur.get.etapes_view.map((etape, i) => {
-          return <Step key={i} title={etape.titre_progressbar} />;
-        })}
-      </Steps>
+    <div>
+      {props.currentStep !== 2 && (
+        <div className="header">
+          <div style={{ marginBottom: "40px" }}>
+            <h1>
+              <b>ÉTAPES</b>
+            </h1>
+          </div>
+          <Steps current={0} progressDot>
+            {monContext.simulateur.get.etapes_view.map((etape, i) => {
+              return <Step key={i} title={etape.titre_progressbar} />;
+            })}
+          </Steps>
+        </div>
+      )}
     </div>
   );
 };

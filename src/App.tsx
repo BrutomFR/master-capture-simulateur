@@ -4,11 +4,14 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./.css";
 import VerificationComponent from "./Core/Components/Verification/VerificationComponent";
-import ISimulateur from "./Core/Interfaces/ISimulateur";
+
+import ISimulateur from "./Core/Interfaces/User/ISimulateur";
+import { IProspects } from './Core/Interfaces/User/Pages_Simulations/IProspects';
 import { Context, IContext } from "./Utils/context";
 const App: FunctionComponent = (props) => {
   const [sizeScreen, setSizeScreen] = useState<number>(0);
   const [simulateur, setSimulateur] = useState<ISimulateur>({} as ISimulateur);
+  const [prospect, setProspect] = useState<IProspects>({} as IProspects);
   const getContext: IContext = {
     simulateur: {
       get: simulateur,
@@ -18,6 +21,10 @@ const App: FunctionComponent = (props) => {
       get: sizeScreen,
       set: setSizeScreen,
     },
+    prospect: {
+      get: prospect,
+      set: setProspect
+    }
   };
   useEffect(() => {
     return () => {

@@ -1,5 +1,6 @@
 import { createContext } from "react";
-import ISimulateur from 'src/Core/Interfaces/ISimulateur';
+import ISimulateur from "src/Core/Interfaces/User/ISimulateur";
+import { IProspects } from 'src/Core/Interfaces/User/Pages_Simulations/IProspects';
 
 export interface IContext {
   simulateur: {
@@ -10,6 +11,10 @@ export interface IContext {
     get: number;
     set: React.Dispatch<React.SetStateAction<number>>;
   };
+  prospect: {
+    get: IProspects;
+    set: React.Dispatch<React.SetStateAction<IProspects>>;
+  }
 }
 
 export const Context = createContext<IContext>({} as IContext);

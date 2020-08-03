@@ -15,6 +15,10 @@ const SimulateurComponent: FunctionComponent<ISimulateurComponent> = (
   const monContext: IContext = useContext(Context);
   const [currentStep, setCurrentStep] = useState<number>(0);
   const nextStep = () => setCurrentStep(currentStep + 1);
+  const [currentEtapeSimulateur, setCurrentEtapeSimulateur] = useState<number>(
+    0
+  );
+  const nextEtape = () => setCurrentEtapeSimulateur(currentEtapeSimulateur + 1);
   // const previousStep = () => setCurrentStep(currentStep - 1);
   useEffect(() => {
     return () => {
@@ -24,15 +28,17 @@ const SimulateurComponent: FunctionComponent<ISimulateurComponent> = (
 
   return (
     <div>
-      {currentStep === 0 && ( // Si c'est la page de capture
-        <div>
-          <HeaderSimulateurComponent />
-          <BodySimulateurComponent
-            currentStep={currentStep}
-            nexStep={nextStep}
-          />
-        </div>
-      )}
+      <HeaderSimulateurComponent
+        currentEtapeSimulateur={currentEtapeSimulateur}
+        setCurrentEtapeSimulateur={nextEtape}
+        currentStep={currentStep}
+      />
+      <BodySimulateurComponent
+        currentStep={currentStep}
+        nexStep={nextStep}
+        currentEtapeSimulateur={currentEtapeSimulateur}
+        nextEtape={nextEtape}
+      />
     </div>
   );
 };

@@ -6,7 +6,10 @@ import React, {
   useEffect,
   useState,
 } from "react";
+
+import { IProspects } from "src/Core/Interfaces/User/Pages_Simulations/IProspects";
 import { Context, IContext } from "src/Utils/context";
+import * as FirebaseHelper from "src/Utils/FirebaseHelper";
 import "./.css";
 import { ICaptureComponent } from "./props";
 
@@ -22,7 +25,20 @@ const CaptureComponent: FunctionComponent<ICaptureComponent> = (props) => {
   const validCapture = () => {
     // VERIFIER SI EMAIL ET PRENOM SONT REMPLIS
     // AJOUTER EMAIL SI LE PROSPECT N'EST PAS ENCORE PRESENT
-    props.nextStep();
+    const prospect: IProspects = {
+      date: Date.now(),
+      email: inputEmail,
+      articles: [],
+      simulateurs: [],
+      prenom: inputPrenom,
+    };
+    if (inputPrenom.length > 2 && inputEmail.includes("@")) {
+      FirebaseHelper.AddProspect(
+        prospect,
+        monContext.simulateur.get
+      ).then((e) => props.nextStep());
+    }
+    monContext.prospect.set(prospect);
   };
   return (
     <div className="container-body">
