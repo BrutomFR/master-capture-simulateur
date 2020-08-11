@@ -5,7 +5,7 @@ import React, {
   useState,
   // useContext,
 } from "react";
-import ISimulateur from 'src/Core/Interfaces/User/ISimulateur';
+import ISimulateur from "src/Core/Interfaces/User/ISimulateur";
 import { Context, IContext } from "src/Utils/context";
 import * as FirebaseHelper from "src/Utils/FirebaseHelper";
 import SimulateurComponent from "../Simulateur/SimulateurComponent";
@@ -34,7 +34,37 @@ const VerificationComponent: FunctionComponent<IVerificationComponent> = (
       {simulatorFound ? (
         <SimulateurComponent />
       ) : (
-        <div>Le simulateur n'existe plus ou n'est pas en ligne.</div>
+        <svg
+          className="svg-loader"
+          width="200"
+          height="200"
+          viewBox="0 0 100 100"
+        >
+          <polyline
+            className="line-cornered stroke-still"
+            points="0,0 100,0 100,100"
+            stroke-width="10"
+            fill="none"
+          ></polyline>
+          <polyline
+            className="line-cornered stroke-still"
+            points="0,0 0,100 100,100"
+            stroke-width="10"
+            fill="none"
+          ></polyline>
+          <polyline
+            className="line-cornered stroke-animation"
+            points="0,0 100,0 100,100"
+            stroke-width="10"
+            fill="none"
+          ></polyline>
+          <polyline
+            className="line-cornered stroke-animation"
+            points="0,0 0,100 100,100"
+            stroke-width="10"
+            fill="none"
+          ></polyline>
+        </svg>
       )}
     </div>
   );

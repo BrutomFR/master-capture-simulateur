@@ -5,8 +5,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./.css";
 import VerificationComponent from "./Core/Components/Verification/VerificationComponent";
 import ISimulateur from "./Core/Interfaces/User/ISimulateur";
-import { IReponse } from './Core/Interfaces/User/Pages_Simulations/Etapes_View/IReponse';
-import { IProspects } from './Core/Interfaces/User/Pages_Simulations/IProspects';
+import { IReponse } from "./Core/Interfaces/User/Pages_Simulations/Etapes_View/IReponse";
+import { IProspects } from "./Core/Interfaces/User/Pages_Simulations/IProspects";
 import { Context, IContext } from "./Utils/context";
 const App: FunctionComponent = (props) => {
   const [sizeScreen, setSizeScreen] = useState<number>(0);
@@ -24,12 +24,12 @@ const App: FunctionComponent = (props) => {
     },
     prospect: {
       get: prospect,
-      set: setProspect
+      set: setProspect,
     },
-    responses: { 
+    responses: {
       get: response,
-      set: setResponses
-    }
+      set: setResponses,
+    },
   };
   useEffect(() => {
     return () => {
@@ -41,7 +41,7 @@ const App: FunctionComponent = (props) => {
     <Context.Provider value={getContext}>
       <BrowserRouter>
         <Switch>
-          <Route path="/:id" component={VerificationComponent} />
+          <Route path="/simulateur/:id" component={VerificationComponent} />
         </Switch>
       </BrowserRouter>
     </Context.Provider>
