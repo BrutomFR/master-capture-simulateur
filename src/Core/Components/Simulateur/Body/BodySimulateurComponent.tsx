@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect } from "react";
 import CaptureComponent from "../Steps/Capture/CaptureComponent";
 import EtapesComponent from "../Steps/Etapes/EtapesComponent";
+import TarifsComponent from "../Steps/Tarifs/TarifsComponent";
 import "./.css";
 import { IBodySimulateurComponent } from "./props";
 const BodySimulateurComponent: FunctionComponent<IBodySimulateurComponent> = (
@@ -22,7 +23,7 @@ const BodySimulateurComponent: FunctionComponent<IBodySimulateurComponent> = (
           nextStep={props.nexStep}
         />
       )}
-      {props.currentStep === 2 && <div>Tarifs</div>}
+      {props.currentStep === 2 && <TarifsComponent />}
     </div>
   );
 };

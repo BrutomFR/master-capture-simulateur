@@ -1,5 +1,6 @@
 import { createContext } from "react";
 import ISimulateur from "src/Core/Interfaces/User/ISimulateur";
+import { IReponse } from 'src/Core/Interfaces/User/Pages_Simulations/Etapes_View/IReponse';
 import { IProspects } from 'src/Core/Interfaces/User/Pages_Simulations/IProspects';
 
 export interface IContext {
@@ -14,6 +15,10 @@ export interface IContext {
   prospect: {
     get: IProspects;
     set: React.Dispatch<React.SetStateAction<IProspects>>;
+  }
+  responses: {
+    get: IReponse[];
+    set: React.Dispatch<React.SetStateAction<IReponse[]>>;
   }
 }
 

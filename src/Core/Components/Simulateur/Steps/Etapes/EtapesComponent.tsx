@@ -27,6 +27,7 @@ const EtapesComponent: FunctionComponent<IEtapesComponent> = (props) => {
       reponse,
       monContext.simulateur.get
     );
+    monContext.responses.get.push(reponse);
     props.nextEtape();
   };
   return (
