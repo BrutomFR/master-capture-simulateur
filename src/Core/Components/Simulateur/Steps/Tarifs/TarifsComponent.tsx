@@ -12,9 +12,19 @@ import { ITarifsComponent } from "./props";
 const TarifsComponent: FunctionComponent<ITarifsComponent> = (props) => {
   const monContext: IContext = useContext(Context);
   const [responses, setResponses] = useState<IReponse[]>([]);
-
+  const [prix, setPrix] = useState<number>(0);
+  const [prixAbonnement, setPrixAbonnement] = useState<number>(0);
   useEffect(() => {
     setResponses(monContext.responses.get);
+    let _prix = 0;
+    let _abo = 0;
+    monContext.responses.get.forEach((rep) => {
+      if (rep.abonement) _abo += rep.prix;
+      else _prix += rep.prix;
+    });
+    setPrix(_prix);
+    setPrixAbonnement(_abo);
+    console.log(_prix);
     return () => {
       //
     };
@@ -48,12 +58,12 @@ const TarifsComponent: FunctionComponent<ITarifsComponent> = (props) => {
                 <div style={{ textAlign: "center" }}>
                   <div className="plan-price-month">Première mensualité</div>
                   <span className="plan-price-one-shot">
-                    449 {monContext.simulateur.get.devise}
+                    {prix} {monContext.simulateur.get.devise}
                   </span>
                 </div>
                 <span>puis </span>
                 <span className="plan-price-month">
-                  59 {monContext.simulateur.get.devise}
+                  {prixAbonnement} {monContext.simulateur.get.devise}
                 </span>
                 <span className="plan-type">/mois</span>
               </div>
